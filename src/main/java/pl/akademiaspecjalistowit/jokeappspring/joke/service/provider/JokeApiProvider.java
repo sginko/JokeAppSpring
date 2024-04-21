@@ -47,10 +47,10 @@ public class JokeApiProvider implements JokeProvider {
 
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            return JokeDtoMapper.toJoke(objectMapper.readValue(response.body(), JokeDto.class));
-        } catch (IOException | InterruptedException ex) {
-            ex.printStackTrace();
+            Joke joke = JokeDtoMapper.toJoke(objectMapper.readValue(response.body(), JokeDto.class));
+            return joke;
+        } catch (Exception e) {
+           throw new JokeDataProviderException("Something was wrong", e);
         }
-        return null;
     }
 }

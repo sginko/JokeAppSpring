@@ -28,8 +28,10 @@ public class JokeDataProvider implements JokeProvider {
     @Override
     public Joke getJokeByCategory(String category) {
         Random rand = new Random();
-        List<Joke> jokesByCategory =
-            getJokeRepository().getAllByCategory(category);
+        List<Joke> jokesByCategory = getJokeRepository().getAllByCategory(category);
+        if (jokesByCategory.isEmpty()) {
+            throw new JokeDataProviderException("No joke for this category is available");
+        }
         return jokesByCategory.get(rand.nextInt(jokesByCategory.size()));
     }
 
