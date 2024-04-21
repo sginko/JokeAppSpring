@@ -11,28 +11,28 @@ import pl.akademiaspecjalistowit.jokeappspring.joke.repository.JokeRepository;
 public class JokeDataProvider implements JokeProvider {
 
     private final List<JokeRepository> jokeRepositories;
+    private final Random random;
     private static long counter = 0;
 
 
-    public JokeDataProvider(List<JokeRepository> jokeRepositories) {
+    public JokeDataProvider(List<JokeRepository> jokeRepositories, Random random) {
         this.jokeRepositories = jokeRepositories;
+        this.random = random;
     }
 
     @Override
     public Joke getJoke() {
-        Random rand = new Random();
         List<Joke> anyJokes = getJokeRepository().getAllJokes();
-        return anyJokes.get(rand.nextInt(anyJokes.size()));
+        return anyJokes.get(random.nextInt(anyJokes.size()));
     }
 
     @Override
     public Joke getJokeByCategory(String category) {
-        Random rand = new Random();
         List<Joke> jokesByCategory = getJokeRepository().getAllByCategory(category);
         if (jokesByCategory.isEmpty()) {
             throw new JokeDataProviderException("No joke for this category is available");
         }
-        return jokesByCategory.get(rand.nextInt(jokesByCategory.size()));
+        return jokesByCategory.get(random.nextInt(jokesByCategory.size()));
     }
 
     private JokeRepository getJokeRepository() {

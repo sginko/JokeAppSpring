@@ -17,9 +17,11 @@ import pl.akademiaspecjalistowit.jokeappspring.joke.model.Joke;
 public class JokeApiProvider implements JokeProvider {
 
     private final HttpClient httpClient;
+    private final ObjectMapper objectMapper;
 
-    public JokeApiProvider(HttpClient httpClient) {
+    public JokeApiProvider(HttpClient httpClient, ObjectMapper objectMapper) {
         this.httpClient = httpClient;
+        this.objectMapper = objectMapper;
     }
 
     @Override
@@ -45,7 +47,6 @@ public class JokeApiProvider implements JokeProvider {
             HttpResponse<String> response = httpClient.send(
                 request, HttpResponse.BodyHandlers.ofString());
 
-            ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             Joke joke = JokeDtoMapper.toJoke(objectMapper.readValue(response.body(), JokeDto.class));
             return joke;
