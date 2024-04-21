@@ -3,8 +3,11 @@ package pl.akademiaspecjalistowit.jokeappspring.joke.repository;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Repository;
 import pl.akademiaspecjalistowit.jokeappspring.joke.model.Joke;
 
+@Repository
 public class InMemoryJokeRepository implements JokeRepository {
 
     private final List<Joke> jokes;
