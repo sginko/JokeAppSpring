@@ -8,6 +8,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import pl.akademiaspecjalistowit.jokeappspring.joke.dto.JokeDto;
 import pl.akademiaspecjalistowit.jokeappspring.joke.mapper.JokeDtoMapper;
@@ -18,19 +19,21 @@ public class JokeApiProvider implements JokeProvider {
 
     private final HttpClient httpClient;
     private final ObjectMapper objectMapper;
+    private final HttpRequest requestJoke;
 
-    public JokeApiProvider(HttpClient httpClient, ObjectMapper objectMapper) {
+    public JokeApiProvider(HttpClient httpClient, ObjectMapper objectMapper, HttpRequest requestJoke) {
         this.httpClient = httpClient;
         this.objectMapper = objectMapper;
+        this.requestJoke = requestJoke;
     }
 
     @Override
     public Joke getJoke() {
-        HttpRequest request = HttpRequest.newBuilder()
-            .GET()
-            .uri(URI.create("https://v2.jokeapi.dev/joke/Any"))
-            .build();
-        return getResponse(request);
+//        HttpRequest request = HttpRequest.newBuilder()
+//            .GET()
+//            .uri(URI.create("https://v2.jokeapi.dev/joke/Any"))
+//            .build();
+        return getResponse(requestJoke);
     }
 
     @Override
