@@ -10,7 +10,7 @@ public class Joke implements Serializable {
     private String content;
     private String category;
 
-    public Joke(String category, String content) {
+    public Joke(String content, String category) {
         this.id = UUID.randomUUID();
         this.content = content;
         this.category = category;

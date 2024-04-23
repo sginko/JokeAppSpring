@@ -26,12 +26,12 @@ public class Configuration {
         return new Random();
     }
 
-    @Bean
-    public HttpRequest requestJoke() {
-        HttpRequest build = HttpRequest.newBuilder()
-                .GET()
-                .uri(URI.create("https://v2.jokeapi.dev/joke/Any"))
-                .build();
-        return build;
-    }
+//    @Bean
+//    public HttpRequest requestJoke() {
+//        HttpRequest build = HttpRequest.newBuilder()
+//                .GET()
+//                .uri(URI.create("https://v2.jokeapi.dev/joke/Any"))
+//                .build();
+//        return build;
+//    }
 }
