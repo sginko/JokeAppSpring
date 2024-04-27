@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import pl.akademiaspecjalistowit.jokeappspring.joke.model.Joke;
 

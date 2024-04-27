@@ -29,6 +29,11 @@ public class JokeServiceImpl implements JokeService {
         return getJokeProvider().getJokeByCategory(category);
     }
 
+    @Override
+    public Joke addJoke(Joke joke) {
+        return joke;
+    }
+
     private JokeProvider getJokeProvider() {
         return jokeProviders.get((int) counter++ % jokeProviders.size());
     }
