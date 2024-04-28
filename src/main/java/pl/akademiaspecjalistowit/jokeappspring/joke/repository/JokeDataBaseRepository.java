@@ -6,7 +6,5 @@ import pl.akademiaspecjalistowit.jokeappspring.joke.entity.JokeEntity;
 import java.util.List;
 
 public interface JokeDataBaseRepository extends JpaRepository<JokeEntity, Long> {
-//    List<JokeEntity> findAllJokes();
-
     List<JokeEntity> findAllByCategory(String category);
 }

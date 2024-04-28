@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.stereotype.Service;
-import pl.akademiaspecjalistowit.jokeappspring.joke.dto.JokeEntityMapper;
+import pl.akademiaspecjalistowit.jokeappspring.joke.mapper.JokeEntityMapper;
 import pl.akademiaspecjalistowit.jokeappspring.joke.entity.JokeEntity;
 import pl.akademiaspecjalistowit.jokeappspring.joke.model.Joke;
 import pl.akademiaspecjalistowit.jokeappspring.joke.repository.JokeDataBaseRepository;
@@ -34,7 +34,7 @@ public class JokeDataProvider implements JokeProvider {
     public Joke getJoke() {
         List<JokeEntity> anyJokes = getJokeRepository().findAll();
         JokeEntity jokeEntity = anyJokes.get(random.nextInt(anyJokes.size()));
-        return jokeEntityMapper.jokeFromJokeEntity(jokeEntity);
+        return jokeEntityMapper.toJoke(jokeEntity);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class JokeDataProvider implements JokeProvider {
             throw new JokeDataProviderException("No joke for this category is available");
         }
         JokeEntity jokeEntity = jokesByCategory.get(random.nextInt(jokesByCategory.size()));
-        return jokeEntityMapper.jokeFromJokeEntity(jokeEntity);
+        return jokeEntityMapper.toJoke(jokeEntity);
     }
 
     private JokeDataBaseRepository getJokeRepository() {

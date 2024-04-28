@@ -1,5 +1,6 @@
 package pl.akademiaspecjalistowit.jokeappspring.joke.service;
 
+import pl.akademiaspecjalistowit.jokeappspring.joke.entity.JokeEntity;
 import pl.akademiaspecjalistowit.jokeappspring.joke.model.Joke;
 
 public interface JokeService {
@@ -8,5 +9,5 @@ public interface JokeService {
 
     Joke getJoke(String category);
 
-    Joke addJoke(Joke joke);
+    void addJoke(JokeEntity jokeEntity);
 }

@@ -1,4 +1,4 @@
-package pl.akademiaspecjalistowit.jokeappspring.joke.dto;
+package pl.akademiaspecjalistowit.jokeappspring.joke.mapper;
 
 import org.springframework.stereotype.Service;
 import pl.akademiaspecjalistowit.jokeappspring.joke.entity.JokeEntity;
@@ -7,11 +7,11 @@ import pl.akademiaspecjalistowit.jokeappspring.joke.model.Joke;
 @Service
 public class JokeEntityMapper {
 
-    public Joke jokeFromJokeEntity(JokeEntity jokeEntity){
+    public Joke toJoke(JokeEntity jokeEntity){
         return new Joke(jokeEntity.getContent(), jokeEntity.getCategory());
     }
 
-    public JokeEntity jokeEntityFromJoke(Joke joke){
+    public JokeEntity toJokeEntity(Joke joke){
         return new JokeEntity(joke.getId(), joke.getContent(), joke.getCategory());
     }
 }
