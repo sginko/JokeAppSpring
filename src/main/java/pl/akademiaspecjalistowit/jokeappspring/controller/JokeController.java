@@ -1,12 +1,13 @@
 package pl.akademiaspecjalistowit.jokeappspring.controller;
 
 import org.springframework.web.bind.annotation.*;
+import pl.akademiaspecjalistowit.jokeappspring.joke.entity.JokeEntity;
+import pl.akademiaspecjalistowit.jokeappspring.joke.mapper.JokeEntityMapper;
 import pl.akademiaspecjalistowit.jokeappspring.joke.model.Joke;
 import pl.akademiaspecjalistowit.jokeappspring.joke.service.JokeService;
-import pl.akademiaspecjalistowit.jokeappspring.joke.service.JokeServiceImpl;
 
 @RestController
-@RequestMapping("/api/jokes")
+@RequestMapping("/api/v1/jokes")
 public class JokeController {
     private final JokeService jokeService;
 
@@ -24,9 +25,13 @@ public class JokeController {
         return jokeService.getJoke(category);
     }
 
-//    @PostMapping
-//    public void saveJoke(@RequestBody Joke joke) {
-//    //jokeService.save(joke);
-//        System.out.println("new joke");
-//    }
+    @GetMapping("/category/{category}")
+    public Joke findJokeByCategory(@PathVariable String category) {
+        return jokeService.getJoke(category);
+    }
+
+    @PostMapping("/add_joke")
+    public void addJoke(@RequestBody Joke joke) {
+         jokeService.addJoke(joke);
+    }
 }

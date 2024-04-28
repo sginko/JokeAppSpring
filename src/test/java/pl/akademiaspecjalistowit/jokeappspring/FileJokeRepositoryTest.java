@@ -18,10 +18,11 @@ class FileJokeRepositoryTest {
     @Test
     @Disabled
     void shouldReadJokeFromFile() {
-        FileJokeRepository fileJokeRepository = new FileJokeRepository("src/main/resources/jokes.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        FileJokeRepository fileJokeRepository = new FileJokeRepository("src/main/resources/jokes.json", objectMapper);
 
         //when
-        List<Joke> allJokes = fileJokeRepository.getAllJokes();
+        List<Joke> allJokes = fileJokeRepository.findAll();
 
         //then
         Assertions.assertFalse(allJokes.isEmpty());
