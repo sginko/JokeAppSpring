@@ -14,7 +14,7 @@ public class InMemoryJokeRepository implements JokeRepository {
 
     public InMemoryJokeRepository() {
         this.jokes = List.of(
-                new Joke("What is an object-oriented way to make a fortune? Inheritance",
+                new Joke("My What is an object-oriented way to make a fortune? Inheritance",
                         "My"),
                 new Joke("What does an IT specialist say when he receives a pendrive for " +
                         "his birthday? Thanks for remembering",
@@ -33,12 +33,12 @@ public class InMemoryJokeRepository implements JokeRepository {
     }
 
     @Override
-    public List<Joke> getAllJokes() {
+    public List<Joke> findAll() {
         return jokes;
     }
 
     @Override
-    public List<Joke> getAllByCategory(String category) {
+    public List<Joke> findAllByCategory(String category) {
         return jokes
                 .stream()
                 .filter(compareCategories(category))

@@ -6,21 +6,20 @@ import org.springframework.stereotype.Service;
 import pl.akademiaspecjalistowit.jokeappspring.joke.entity.JokeEntity;
 import pl.akademiaspecjalistowit.jokeappspring.joke.model.Joke;
 import pl.akademiaspecjalistowit.jokeappspring.joke.repository.JokeDataBaseRepository;
+import pl.akademiaspecjalistowit.jokeappspring.joke.service.provider.JokeDataProvider;
 import pl.akademiaspecjalistowit.jokeappspring.joke.service.provider.JokeProvider;
-
 @Service
 public class JokeServiceImpl implements JokeService {
 
     private final List<JokeProvider> jokeProviders;
-    private final JokeDataBaseRepository jokeDataBaseRepository;
     private static long counter = 0;
 
-    public JokeServiceImpl(List<JokeProvider> jokeProviders, JokeDataBaseRepository jokeDataBaseRepository) {
-        if (jokeProviders == null || jokeProviders.isEmpty()) {
-            throw new RuntimeException("Required at least one JokeProvider for the application to run");
-        }
+    public JokeServiceImpl(List<JokeProvider> jokeProviders) {
+//        if (jokeProviders == null || jokeProviders.isEmpty()) {
+//            throw new RuntimeException("Required at least one JokeProvider for the application to run");
+//        }
         this.jokeProviders = jokeProviders;
-        this.jokeDataBaseRepository = jokeDataBaseRepository;
+//        this.jokeDataBaseRepository = jokeDataBaseRepository;
     }
 
     @Override
@@ -34,8 +33,13 @@ public class JokeServiceImpl implements JokeService {
     }
 
     @Override
-    public void addJoke(JokeEntity jokeEntity) {
-        jokeDataBaseRepository.save(jokeEntity);
+    public void addJoke(Joke joke) {
+        for (JokeProvider jokeProvider : jokeProviders) {
+            if(jokeProvider instanceof JokeDataProvider){
+                ((JokeDataProvider) jokeProvider).save(joke);
+            }
+        }
+//        getJokeProvider().save(joke);
     }
 
     private JokeProvider getJokeProvider() {

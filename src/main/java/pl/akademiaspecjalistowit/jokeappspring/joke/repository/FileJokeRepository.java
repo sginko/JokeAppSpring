@@ -34,7 +34,7 @@ public class FileJokeRepository implements JokeRepository {
     }
 
     @Override
-    public List<Joke> getAllJokes() {
+    public List<Joke> findAll() {
         return jokesWithCategories.entrySet()
                 .stream()
                 .flatMap(e -> e.getValue().stream())
@@ -42,7 +42,7 @@ public class FileJokeRepository implements JokeRepository {
     }
 
     @Override
-    public List<Joke> getAllByCategory(String category) {
+    public List<Joke> findAllByCategory(String category) {
         return jokesWithCategories.get(category);
     }
 

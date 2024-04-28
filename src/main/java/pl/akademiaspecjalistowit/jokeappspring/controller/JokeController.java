@@ -10,11 +10,9 @@ import pl.akademiaspecjalistowit.jokeappspring.joke.service.JokeService;
 @RequestMapping("/api/v1/jokes")
 public class JokeController {
     private final JokeService jokeService;
-    private final JokeEntityMapper jokeEntityMapper;
 
-    public JokeController(JokeService jokeService, JokeEntityMapper jokeEntityMapper) {
+    public JokeController(JokeService jokeService) {
         this.jokeService = jokeService;
-        this.jokeEntityMapper = jokeEntityMapper;
     }
 
     @GetMapping()
@@ -34,6 +32,6 @@ public class JokeController {
 
     @PostMapping("/add_joke")
     public void addJoke(@RequestBody Joke joke) {
-         jokeService.addJoke(jokeEntityMapper.toJokeEntity(joke));
+         jokeService.addJoke(joke);
     }
 }

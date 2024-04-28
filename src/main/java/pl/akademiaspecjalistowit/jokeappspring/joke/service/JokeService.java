@@ -9,5 +9,5 @@ public interface JokeService {
 
     Joke getJoke(String category);
 
-    void addJoke(JokeEntity jokeEntity);
+    void addJoke(Joke joke);
 }
